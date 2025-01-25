@@ -1,0 +1,48 @@
+﻿@model IEnumerable<tekst.Models.Customer>
+
+<h2>Lista klientów</h2>
+<a asp-action="Create" class="btn btn-primary">Dodaj klienta</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Wypożyczony samochód</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Email</td>
+                <td>@customer.PhoneNumber</td>
+                <td>
+                    @if (customer.HasRentedCar)
+                    {
+                        <span style="color: green;">●</span>
+                        
+                    }
+                    else
+                    {
+                        <span style="color: red;">●</span>
+                        
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@customer.Id" class="btn btn-primary">Edytuj</a>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@customer.Id" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć tego klienta?')">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

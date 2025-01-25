@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Dashboard</h1>
+
+    <div class="row text-center">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm border-primary">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">Auta</h4>
+                    <p class="card-text">
+                        <strong>@ViewData["RentedCars"]</strong> z <strong>@ViewData["TotalCars"]</strong> aut jest obecnie wynajętych.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm border-success">
+                <div class="card-body">
+                    <h4 class="card-title text-success">Klienci</h4>
+                    <p class="card-text">
+                        <strong>@ViewData["ActiveRentals"]</strong> z <strong>@ViewData["TotalCustomers"]</strong> klientów wynajmuje obecnie auto.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row text-center mt-4">
+        <div class="col-md-4 mb-4">
+            <a href="/Car/Index" class="btn btn-primary btn-lg w-100">Zarządzaj Autami</a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="/Customer/Index" class="btn btn-success btn-lg w-100">Zarządzaj Klientami</a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="/Rental/Index" class="btn btn-warning btn-lg w-100">Zarządzaj Wynajmami</a>
+        </div>
+    </div>
+</div>

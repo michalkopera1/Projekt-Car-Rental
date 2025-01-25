@@ -1,0 +1,36 @@
+﻿@model IEnumerable<tekst.Models.Rental>
+
+<h2>Lista wypożyczeń</h2>
+<a asp-action="Create" class="btn btn-primary">Dodaj wypożyczenie</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Samochód</th>
+            <th>Klient</th>
+            <th>Data Wypożyczenia</th>
+            <th>Data Zwrotu</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rental in Model)
+        {
+            <tr>
+                <td>@rental.Id</td>
+                <td>@($"{rental.Car.Make} {rental.Car.Model}")</td>
+                <td>@($"{rental.Customer.FirstName} {rental.Customer.LastName}")</td>
+                <td>@rental.RentalDate.ToShortDateString()</td>
+                <td>@rental.ReturnDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@rental.Id" class="btn btn-primary">Edytuj</a>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@rental.Id" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć tego klienta?')">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

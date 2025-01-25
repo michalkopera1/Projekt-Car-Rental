@@ -1,0 +1,55 @@
+﻿
+  
+ @model IEnumerable<tekst.Models.Car>
+
+@{
+    ViewData["Title"] = "Lista Samochodów";
+}
+
+<h1>@ViewData["Title"]</h1>
+<a asp-action="Create" class="btn btn-primary">Dodaj nowy samochód</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Rok</th>
+            <th>Cena dzienna</th>
+            <th>Dostępność</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Make</td>
+                <td>@car.Model</td>
+                <td>@car.Year</td>
+                <td>@car.DailyPrice PLN</td>
+                <td>
+                    @if (car.IsAvailable)
+                    {
+                        <span style="color: green;">●</span>
+                        
+                    }
+                    else
+                    {
+                        <span style="color: red;">●</span>
+                       
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@car.Id" class="btn btn-primary">Edytuj</a>
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@car.Id" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć tego klienta?')">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

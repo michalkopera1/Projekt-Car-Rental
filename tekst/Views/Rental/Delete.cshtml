@@ -1,0 +1,18 @@
+﻿@model tekst.Models.Rental
+
+<h2>Usuń wypożyczenie</h2>
+
+<p>Czy na pewno chcesz usunąć to wypożyczenie?</p>
+
+<p>
+    <strong>Klient:</strong> @Model.Customer.LastName<br />
+    <strong>Samochód:</strong> @Model.Car.Model<br />
+    <strong>Data rozpoczęcia:</strong> @Model.RentalDate.ToShortDateString()<br />
+    <strong>Data zakończenia:</strong> @Model.ReturnDate.ToShortDateString()
+</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit">Usuń</button>
+    <a asp-action="Index">Anuluj</a>
+</form>
